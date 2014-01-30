@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<title>Node Authentication</title>
+</head>
+<body>
+<div class="container">
+	<header>
+		<h1>Add Local Account</h1>
+	</header>
+
+	<aside>
+		<% if (message.length > 0) { %>
+			<p><%= message %></div>
+		<% } %>
+	</aside>
+
+	<form action="/connect/local" method="post">
+		<div>
+			<label>Email</label>
+			<input type="text" name="email">
+		</div>
+		<div>
+			<label>Password</label>
+			<input type="password" name="password">
+		</div>
+		<div>
+			<button type="submit">Add Local</button>
+		</div>
+	</form>
+
+	<footer>
+		<p><a href="/profile">Back to Profile</a></p>
+	</footer>
+
+</div>
+</body>
+</html>
