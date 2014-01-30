@@ -1,1 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<title>Node Authentication</title>
+<style>
+	section {border:1px solid;margin:5px;padding:5px;}
+</style>
+</head>
+<body>
+<div class="container">
+	<header>
+		<h1>Profile Page</h1>
+		<p><a href="/logout">Logout</a></p>
+	</header>
 
+	<section>
+		<% if (user.local.email) { %>
+			<h2>Local</h2>
+			<p><b>id</b>: <%= user._id %><br></p>
+			<p><b>email</b>: <%= user.local.email %></p>
+			<p><b>password</b>: <%= user.local.password %></p>
+			<p><a href="/unlink/local">Unlink</a></p>
+		<% } else { %>
+			<p><a href="/connect/local">Connect Local</a></p>
+		<% } %>
+	</section>
+
+	<section>
+		<% if (user.facebook.token) { %>
+			<h2>Facebook</h2>
+			<p><b>id:</b> <%= user.facebook.id %></p>
+			<p><b>token:</b> <%= user.facebook.token %></p>
+			<p><b>email:</b> <%= user.facebook.email %></p>
+			<p><b>name:</b> <%= user.facebook.name %></p>
+			<p><a href="/unlink/facebook">Unlink</a></p>
+		<% } else { %>
+			<p><a href="/connect/facebook">Connect Facebook</a></p>
+		<% } %>
+	</section>
+
+	<section>
+		<% if (user.twitter.token) { %>
+			<h2>Twitter</h2>
+			<p><b>id:</b> <%= user.twitter.id %></p>
+			<p><b>token:</b> <%= user.twitter.token %></p>
+			<p><b>username:</b> <%= user.twitter.username %></p>
+			<p><b>displayName:</b> <%= user.twitter.displayName %></p>
+			<p><a href="/unlink/twitter">Unlink</a></p>
+		<% } else { %>
+			<p><a href="/connect/twitter">Connect Twitter</a></p>
+		<% } %>
+	</section>
+
+	<section>
+		<% if (user.google.token) { %>
+			<h2>Google</h2>
+			<p><b>id:</b> <%= user.google.id %></p>
+			<p><b>token:</b> <%= user.google.token %></p>
+			<p><b>email:</b> <%= user.google.email %></p>
+			<p><b>name:</b> <%= user.google.name %></p>
+			<p><a href="/unlink/google">Unlink</a></p>
+		<% } else { %>
+			<p><a href="/connect/google">Connect Google</a></p>
+		<% } %>
+	</section>
+</div>
+</body>
+</html>

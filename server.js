@@ -8,21 +8,28 @@ var flash = require('connect-flash');
 var configDB = require('./config/database.js');
 
 mongoose.connect(configDB.url);
+var db = mongoose.connection;
 
-require('./config/passport')(passport);
-
-app.configure(function() {
-	app.use(express.logger('dev'));
-	app.use(express.cookieParser());
-	app.use(express.bodyParser());
-	app.set('view engine', 'ejs');
-	app.use(express.session({secret:'digdug'}));
-	app.use(passport.initialize());
-	app.use(passport.session());
-	app.use(flash());
+db.on('error', function() {
+	console.log('Failed to connect to database. Aborting.');
 });
 
-require('./app/routes.js')(app, passport);
+db.once('open', function() {
+	require('./config/passport')(passport);
 
-app.listen(port);
-console.log('Listening on port ' + port);
+	app.configure(function() {
+		app.use(express.logger('dev'));
+		app.use(express.cookieParser());
+		app.use(express.bodyParser());
+		app.set('view engine', 'ejs');
+		app.use(express.session({secret:'digdug'}));
+		app.use(passport.initialize());
+		app.use(passport.session());
+		app.use(flash());
+	});
+
+	require('./app/routes.js')(app, passport);
+
+	app.listen(port);
+	console.log('Listening on port ' + port);
+});

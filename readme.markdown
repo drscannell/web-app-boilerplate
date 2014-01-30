@@ -1,15 +1,14 @@
-# Reader Pipe
+# Web App Boilderplate
 
-The goal of this project is to create a web service that connects e-reading platforms with social media platforms. 
+Use this boilerplate code to kickstart a web app that needs authentication.
 
-In its first iteration, it will essentially be a configurable email server that receives and parses "share" emails from major ereading systems (iBooks, Kindle, Kobo, etc)
+Builds on Chris Sevilleja's excellent passport tutorial: 
 
-## Use Cases
+http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local
 
-* New user creates account
-* User creates rule for incoming email
-* Server receives email, associates with account, executes rule
-* Server intelligently identifies & parses emails from various ereader share functions (iBooks, Kindle, Kobo, etc)
+## Getting Started
+
+There are some logistics required before you're up and running.
 
 ## Dependencies
 
@@ -19,4 +18,3 @@ In its first iteration, it will essentially be a configurable email server that 
 * [ejs](https://github.com/visionmedia/ejs)
 * [connect-flash](https://github.com/jaredhanson/connect-flash)
 * [bcrypt-nodejs](https://github.com/shaneGirish/bcrypt-nodejs)
-* [simplesmtp](https://github.com/andris9/simplesmtp)
