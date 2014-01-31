@@ -1,8 +1,8 @@
-# Web App Boilderplate
+# Web App Boilerplate
 
-Use this boilerplate code to kickstart a web app that needs authentication.
+Boilerplate code for node apps needing authentication.
 
-Builds on Chris Sevilleja's excellent passport tutorial: 
+Based on Chris Sevilleja's excellent passport tutorial: 
 
 http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local
 
