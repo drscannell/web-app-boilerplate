@@ -84,7 +84,7 @@ module.exports = function(app, passport) {
 		failureRedirect: '/'
 	}));
 
-	app.get('unlink/facebook'), function(req, res) {
+	app.get('/unlink/facebook', function(req, res) {
 		var user = req.user;
 		user.facebook.token = undefined;
 		user.save(function(err) {
@@ -110,7 +110,7 @@ module.exports = function(app, passport) {
 		failureRedirect: '/'
 	}));
 
-	app.get('/unlink/twitter'), function(req, res) {
+	app.get('/unlink/twitter', function(req, res) {
 		var user = req.user;
 		user.twitter.token = undefined;
 		user.save(function(err) {
@@ -138,7 +138,7 @@ module.exports = function(app, passport) {
 		failureRedirect: '/'
 	}));
 
-	app.get('unlink/google'), function(req, res) {
+	app.get('/unlink/google', function(req, res) {
 		var user = req.user;
 		user.google.token = undefined;
 		user.save(function(err) {
