@@ -82,6 +82,19 @@ module.exports = function(passport) {
 					if (err) {
 						return done(err);
 					} else if (user) {
+						// found user id in database
+						if (!user.facebook.token) {
+							// no token. user must have unlinked
+							// at some point
+							user.facebook.token = token;
+							user.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+							user.facebook.email = profile.emails[0].value;
+							user.save(function(err) {
+								if (err)
+									throw err;
+								return done(null, user);
+							});
+						}
 						return done(null, user);
 					} else {
 						var newUser = new User();
@@ -133,6 +146,19 @@ module.exports = function(passport) {
 					if (err) {
 						return done(err);
 					} else if (user) {
+						// found user id in database
+						if (!user.twitter.token) {
+							// no token. user must have unlinked
+							// at some point
+							user.twitter.token = token;
+							user.twitter.username = profile.username;
+							user.twitter.displayName = profile.displayName;
+							user.save(function(err) {
+								if (err)
+									throw err;
+								return done(null, user);
+							});
+						}
 						return done(null, user);
 					} else {
 						var newUser = new User();
@@ -181,6 +207,19 @@ module.exports = function(passport) {
 					if (err) {
 						return done(err);
 					} else if (user) {
+						// found user id in database
+						if (!user.google.token) {
+							// no token. user must have unlinked
+							// at some point
+							user.google.token = token;
+							user.google.name = profile.displayName;
+							user.google.email = profile.emails[0].value;
+							user.save(function(err) {
+								if (err)
+									throw err;
+								return done(null, user);
+							});
+						}
 						return done(null, user);
 					} else {
 						var newUser = new User();
