@@ -54,6 +54,15 @@ module.exports = function(app, passport) {
 		failureRedirect: '/connect/local',
 		failureFlash: true
 	}));
+
+	app.get('/unlink/local', function(req, res) {
+		var user = req.user;
+		user.local.email = undefined;
+		user.local.password = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
 	
 	// ------------ facebook routes ------------
 
@@ -75,6 +84,14 @@ module.exports = function(app, passport) {
 		failureRedirect: '/'
 	}));
 
+	app.get('unlink/facebook'), function(req, res) {
+		var user = req.user;
+		user.facebook.token = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
+
 	// ------------ twitter routes ------------
 
 	app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -93,6 +110,14 @@ module.exports = function(app, passport) {
 		failureRedirect: '/'
 	}));
 
+	app.get('/unlink/twitter'), function(req, res) {
+		var user = req.user;
+		user.twitter.token = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
+	
 	// ------------ google routes ------------
 
 	app.get('/auth/google', passport.authenticate('google', {
@@ -113,6 +138,14 @@ module.exports = function(app, passport) {
 		failureRedirect: '/'
 	}));
 
+	app.get('unlink/google'), function(req, res) {
+		var user = req.user;
+		user.google.token = undefined;
+		user.save(function(err) {
+			res.redirect('/profile');
+		});
+	});
+	
 };
 
 // ------------ middleware ------------
